@@ -2,38 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Bra</title>
 </head>
 <body>
   <script>
    function check(str, bracketsConfig) {
     // your solution
-    var a = [];
-     a.unshift('ll');
-      a.unshift('qq');
-     console.log(a);
-     var twin = []; //arr
+     var pairs = [];
+     pairs.push('ll');
+     pairs.pop();
+     console.log(pairs);
+     
+     var twin = []; 
+     
      for (var i = 0; i < str.length; i++) {
         if (twin.indexOf(str[i]) !==-1) {
           
           twin.splice(twin.indexOf(str[i]),1);
-          console.log(str[i]+'=clotwin'+'_'+twin);
+          console.log(str[i]+'= CLO twin'+'_'+twin);
+          
+          isPair(str[i], pairs[pairs.length-1], bracketsConfig)? pairs.pop() : pairs.unshift('kk');
           
         }else if (isTwin(str[i],bracketsConfig)) {
           
           twin.push(str[i]);
-          console.log(str[i]+'=twin'+'reco'+twin);
+          console.log(str[i]+'=twin'+' OPE '+twin);
+          pairs.push(str[i]);
           
         }else if (isOpening(str[i], bracketsConfig)) {
           
-          console.log(str[i]+'=opening');
+          console.log(str[i]+' OPE ');
+          pairs.push(str[i]);
           
         } else {
           
-          console.log(str[i]+'=closing');
+          console.log(str[i]+' CLO ');
+          isPair(str[i], pairs[pairs.length-1], bracketsConfig)? pairs.pop() : pairs.unshift('kk');
           
         }
      }
+     console.log(pairs);
    }
     
     function isTwin(symbol,arr) {
@@ -43,20 +51,30 @@
           return true;
         }
       }
-      return false
+      return false;
     }
+    
     function isOpening(symbol,arr) {
       for (var i = 0; i < arr.length; i++) {
-        if (symbol === arr[i][0] && symbol !== arr[i][1]) {
+        if (symbol === arr[i][0]/* && symbol !== arr[i][1]*/) {
           return true;
         }
       }
-      return false
+      return false;
+    }
+    
+    function isPair(symbol, goal, arr) {
+      for (var i = 0; i < arr.length; i++) {
+        if (symbol === arr[i][1] &&  goal === arr[i][0] ) {
+          return true;
+        }
+      }
+      return false;
     }
 
-    check('([{}])', [['(', ')'], ['[', ']'], ['{', '}']]);
-check('|()2222|(||)||', [['(', ')'],['2', '2'], ['|', '|']]) // -> true
-    
+
+check('|()|(||)||', [['(', ')'], ['|', '|']]); // -> true
+//    check('|(|)', [['(', ')'], ['|', '|']])
   </script>
 </body>
 </html>
