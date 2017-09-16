@@ -38,7 +38,7 @@ module.exports = function check(str, bracketsConfig) {
         }
      }
 //     console.log(pairs);
-     return true;
+     return pairs.length === 0;
   
 }
 
@@ -54,7 +54,7 @@ function isTwin(symbol,arr) {
 
 function isOpening(symbol,arr) {
   for (var i = 0; i < arr.length; i++) {
-    if (symbol === arr[i][0]/* && symbol !== arr[i][1]*/) {
+    if (symbol === arr[i][0]) {
       return true;
     }
   }

@@ -48,8 +48,8 @@
           
         }
      }
-     console.log(pairs);
-     return true;
+     console.log(pairs.length ===0);
+     return pairs.length ===0
    }
     
     function isTwin(symbol,arr) {
@@ -82,7 +82,7 @@
 
 
 check('|()|(||)||', [['(', ')'], ['|', '|']]); // -> true
-    check('|(|)', [['(', ')'], ['|', '|']])
+    check('[]()(',[['(', ')'], ['[', ']']])
   </script>
 </body>
 </html>
